@@ -3,9 +3,14 @@ import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
 import { NotificationsModule } from '../notifications/notifications.module';
 import { ProductsModule } from '../products/products.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [NotificationsModule, ProductsModule],
+  imports: [
+    NotificationsModule,
+    ProductsModule,
+    AuthModule,
+  ],
   controllers: [OrdersController],
   providers: [OrdersService],
 })

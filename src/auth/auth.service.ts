@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
+  constructor(private readonly jwtService: JwtService) {}
+
   register(user: any) {
     return {
       message: 'User registered successfully',
@@ -10,9 +13,15 @@ export class AuthService {
   }
 
   login(user: any) {
+    const payload = {
+      email: user.email,
+    };
+
+    const access_token = this.jwtService.sign(payload);
+
     return {
       message: 'Login successful',
-      user,
+      access_token,
     };
   }
 }

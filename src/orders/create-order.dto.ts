@@ -1,12 +1,8 @@
-import { IsArray, IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, ArrayNotEmpty, IsString } from 'class-validator';
 
 export class CreateOrderDto {
-  @IsString()
-  @IsNotEmpty()
-  userId: string;   // or email/phone depending on your auth setup
-
   @IsArray()
-  @IsNotEmpty()
-  productIds: string[];   // array of product IDs
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  productIds: string[];
 }
-
